@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prepto – Hiring Loop Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Tailwind CDN (for quick prototyping) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['system-ui', 'ui-sans-serif', 'SF Pro Text', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <!-- Page wrapper -->
+  <div class="min-h-screen flex flex-col">
+    <!-- Top Navigation -->
+    <header class="border-b border-slate-200 bg-white/80 backdrop-blur">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+        <!-- Left: Logo -->
+        <div class="flex items-center gap-2">
+          <div class="h-8 w-8 rounded-xl bg-slate-900 flex items-center justify-center text-xs font-semibold text-slate-50">
+            P
+          </div>
+          <div class="flex flex-col">
+            <span class="font-semibold tracking-tight text-slate-900">Prepto</span>
+            <span class="text-[11px] uppercase tracking-[0.18em] text-slate-400">
+              Hiring Loop
+            </span>
+          </div>
+        </div>
+
+        <!-- Center nav -->
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <button class="text-slate-900 font-medium">
+            Jobs
+          </button>
+          <button class="text-slate-500 hover:text-slate-900 transition">
+            Calendar
+          </button>
+          <button class="text-slate-500 hover:text-slate-900 transition">
+            Reflections
+          </button>
+          <button class="text-slate-500 hover:text-slate-900 transition">
+            Insights
+          </button>
+          <button class="text-slate-500 hover:text-slate-900 transition">
+            Agents
+          </button>
+        </nav>
+
+        <!-- Right: Actions -->
+        <div class="flex items-center gap-3">
+          <!-- AI Inbox -->
+          <button class="relative inline-flex items-center justify-center h-9 w-9 rounded-full border border-slate-200 bg-white hover:bg-slate-50 transition">
+            <span class="sr-only">AI Inbox</span>
+            <!-- Simple sparkles icon -->
+            <svg class="h-4 w-4 text-slate-600" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2.5L10.9 5.1L13.5 6L10.9 6.9L10 9.5L9.1 6.9L6.5 6L9.1 5.1L10 2.5Z" fill="currentColor"/>
+              <path d="M15 10.5L15.6 12.1L17.2 12.7L15.6 13.3L15 14.9L14.4 13.3L12.8 12.7L14.4 12.1L15 10.5Z" fill="currentColor" opacity="0.7"/>
+              <path d="M6 11.5L6.5 13L8 13.5L6.5 14L6 15.5L5.5 14L4 13.5L5.5 13L6 11.5Z" fill="currentColor" opacity="0.7"/>
+            </svg>
+            <span class="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-blue-500 ring-2 ring-white"></span>
+          </button>
+
+          <!-- User -->
+          <div class="flex items-center gap-2">
+            <div class="hidden sm:flex flex-col items-end">
+              <span class="text-xs font-medium text-slate-900">Valera</span>
+              <span class="text-[11px] text-slate-400">Active search</span>
+            </div>
+            <div class="h-8 w-8 rounded-full bg-gradient-to-br from-slate-800 via-slate-900 to-slate-700 flex items-center justify-center text-[11px] font-semibold text-slate-50">
+              VH
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+        <!-- Job context header -->
+        <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
+              <span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+              Active pipeline
+            </div>
+            <h1 class="mt-3 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">
+              Senior/Staff Product Engineer (Frontend)
+            </h1>
+            <p class="mt-1 text-sm text-slate-500">
+              epilot GmbH • Cologne / Remote • SaaS • Energy &amp; eCommerce
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="hidden sm:block text-right">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-400">Match score</p>
+              <p class="mt-1 text-lg font-semibold text-emerald-600">82%</p>
+            </div>
+            <button class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50 transition">
+              <span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span>
+              Awaiting recruiter reply
+            </button>
+          </div>
+        </div>
+
+        <!-- Grid: Left (Job), Right (Agents) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-7 items-start">
+          <!-- LEFT: 2 columns span -->
+          <section class="lg:col-span-2 space-y-6">
+            <!-- Job summary card -->
+            <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-4 sm:p-5">
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                <div class="space-y-3">
+                  <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-50 px-2.5 py-1 border border-slate-100">
+                      <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                      Product-minded frontend
+                    </span>
+                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-50 px-2.5 py-1 border border-slate-100">
+                      React • TypeScript
+                    </span>
+                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-50 px-2.5 py-1 border border-slate-100">
+                      Microfrontends • DevOps mindset
+                    </span>
+                  </div>
+                  <p class="text-sm text-slate-600 leading-relaxed">
+                    epilot is building a SaaS platform to sell complex energy products online. They look for
+                    <span class="font-medium text-slate-900">product engineers</span> who combine strong
+                    frontend skills with ownership, DevOps mindset and API-first thinking. You’ll work in a
+                    cross-functional team, shipping React-based microfrontends on AWS.
+                  </p>
+                </div>
+
+                <div class="w-full sm:w-auto sm:min-w-[180px] space-y-3">
+                  <div class="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5">
+                    <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400">Timeline</p>
+                    <p class="mt-1 text-sm font-medium text-slate-900">Next expected step:</p>
+                    <p class="text-sm text-slate-600">Recruiter screen (25–30 min, remote)</p>
+                    <p class="mt-1 text-xs text-slate-400">Last interaction: 3 days ago via Gmail</p>
+                  </div>
+                  <button class="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 px-3.5 py-2 text-xs font-medium text-slate-50 hover:bg-slate-800 transition">
+                    View email thread
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none">
+                      <path d="M6 10h6.2L9 6.8 10.1 5.7 14.4 10l-4.3 4.3L9 13.2 12.2 10H6V10Z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Requirements & Skills -->
+            <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-4 sm:p-5">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                <h2 class="text-sm font-semibold text-slate-900">
+                  Requirements &amp; skills for this role
+                </h2>
+                <p class="text-xs text-slate-500">
+                  Parsed from job description · Compared to your profile
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Core skills -->
+                <div class="space-y-2">
+                  <p class="text-xs font-medium uppercase tracking-[0.14em] text-slate-400">
+                    Core stack
+                  </p>
+                  <ul class="space-y-1.5 text-xs text-slate-600">
+                    <li class="flex items-center justify-between gap-2">
+                      <span>React (Hooks, routing)</span>
+                      <span class="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] text-emerald-700 border border-emerald-100">
+                        Strong
+                      </span>
+                    </li>
+                    <li class="flex items-center justify-between gap-2">
+                      <span>TypeScript, ES6</span>
+                      <span class="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] text-emerald-700 border border-emerald-100">
+                        Strong
+                      </span>
+                    </li>
+                    <li class="flex items-center justify-between gap-2">
+                      <span>Unit &amp; E2E testing</span>
+                      <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-[11px] text-amber-700 border border-amber-100">
+                        OK
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Architecture & mindset -->
+                <div class="space-y-2">
+                  <p class="text-xs font-medium uppercase tracking-[0.14em] text-slate-400">
+                    Mindset &amp; architecture
+                  </p>
+                  <ul class="space-y-1.5 text-xs text-slate-600">
+                    <li class="flex items-center justify-between gap-2">
+                      <span>Product-minded engineering</span>
+                      <span class="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] text-emerald-700 border border-emerald-100">
+                        Strong
+                      </span>
+                    </li>
+                    <li class="flex items-center justify-between gap-2">
+                      <span>DevOps: “You build it, you run it”</span>
+                      <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-[11px] text-amber-700 border border-amber-100">
+                        Moderate
+                      </span>
+                    </li>
+                    <li class="flex items-center justify-between gap-2">
+                      <span>API-first design</span>
+                      <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-[11px] text-amber-700 border border-amber-100">
+                        Needs focus
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Nice to have -->
+                <div class="space-y-2">
+                  <p class="text-xs font-medium uppercase tracking-[0.14em] text-slate-400">
+                    Nice-to-have
+                  </p>
+                  <ul class="space-y-1.5 text-xs text-slate-600">
+                    <li class="flex items-center justify-between gap-2">
+                      <span>GraphQL</span>
+                      <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-[11px] text-amber-700 border border-amber-100">
+                        Light
+                      </span>
+                    </li>
+                    <li class="flex items-center justify-between gap-2">
+                      <span>Node.js, AWS</span>
+                      <span class="inline-flex items-center rounded-full bg-rose-50 px-2 py-0.5 text-[11px] text-rose-700 border border-rose-100">
+                        Gap
+                      </span>
+                    </li>
+                    <li class="flex items-center justify-between gap-2">
+                      <span>eCommerce background</span>
+                      <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-[11px] text-amber-700 border border-amber-100">
+                        Limited
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interview timeline -->
+            <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-4 sm:p-5">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
+                <h2 class="text-sm font-semibold text-slate-900">
+                  Interview path for this role
+                </h2>
+                <p class="text-xs text-slate-500">
+                  Prepto will adapt your prep as you move along this loop.
+                </p>
+              </div>
+
+              <ol class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <!-- Each step -->
+                <li class="flex items-start gap-3">
+                  <div class="flex flex-col items-center">
+                    <div class="h-6 w-6 rounded-full bg-blue-600 text-[11px] text-white flex items-center justify-center shadow-sm">
+                      1
+                    </div>
+                    <div class="hidden lg:block h-12 w-px bg-slate-200 mt-1"></div>
+                  </div>
+                  <div class="text-sm">
+                    <p class="font-medium text-slate-900">Recruiter screen</p>
+                    <p class="text-xs text-slate-500">Motivation, fit, experience overview.</p>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div class="flex flex-col items-center">
+                    <div class="h-6 w-6 rounded-full bg-slate-900 text-[11px] text-white flex items-center justify-center">
+                      2
+                    </div>
+                    <div class="hidden lg:block h-12 w-px bg-slate-200 mt-1"></div>
+                  </div>
+                  <div class="text-sm">
+                    <p class="font-medium text-slate-900">Technical interview</p>
+                    <p class="text-xs text-slate-500">Frontend architecture, React, DevOps mindset.</p>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div class="flex flex-col items-center">
+                    <div class="h-6 w-6 rounded-full bg-slate-900/80 text-[11px] text-white flex items-center justify-center">
+                      3
+                    </div>
+                    <div class="hidden lg:block h-12 w-px bg-slate-200 mt-1"></div>
+                  </div>
+                  <div class="text-sm">
+                    <p class="font-medium text-slate-900">Frontend exercise</p>
+                    <p class="text-xs text-slate-500">Hands-on React task, UI quality, testing.</p>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div class="flex flex-col items-center">
+                    <div class="h-6 w-6 rounded-full bg-slate-900/70 text-[11px] text-white flex items-center justify-center">
+                      4
+                    </div>
+                    <div class="hidden lg:block h-12 w-px bg-slate-200 mt-1"></div>
+                  </div>
+                  <div class="text-sm">
+                    <p class="font-medium text-slate-900">Team &amp; leadership</p>
+                    <p class="text-xs text-slate-500">Collaboration, ownership, culture fit.</p>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div class="flex flex-col items-center">
+                    <div class="h-6 w-6 rounded-full bg-slate-900/60 text-[11px] text-white flex items-center justify-center">
+                      5
+                    </div>
+                  </div>
+                  <div class="text-sm">
+                    <p class="font-medium text-slate-900">Offer &amp; negotiation</p>
+                    <p class="text-xs text-slate-500">Salary, expectations, start date.</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </section>
+
+          <!-- RIGHT: Agents & Widgets -->
+          <aside class="space-y-5">
+            <!-- Agents heading -->
+            <div class="flex items-center justify-between">
+              <h2 class="text-sm font-semibold text-slate-900">
+                Active agents for this job
+              </h2>
+              <span class="text-[11px] text-slate-400">
+                3 active · 2 idle
+              </span>
+            </div>
+
+            <!-- Agent: Recruiter Screen -->
+            <div class="bg-white border border-blue-100 rounded-2xl shadow-sm overflow-hidden">
+              <div class="h-1.5 bg-gradient-to-r from-blue-500 via-blue-400 to-emerald-400"></div>
+              <div class="p-4 space-y-2.5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="flex items-center gap-2">
+                    <div class="h-7 w-7 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center">
+                      <span class="text-[11px] font-semibold text-blue-600">RS</span>
+                    </div>
+                    <div>
+                      <p class="text-xs font-semibold text-slate-900">
+                        Recruiter Screen Agent
+                      </p>
+                      <p class="text-[11px] text-blue-700">
+                        Next step · Pending invite
+                      </p>
+                    </div>
+                  </div>
+                  <span class="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-medium text-blue-700 border border-blue-100">
+                    Idle
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  I’ll help you frame your story for epilot: your product mindset,
+                  DevOps ownership and experience with React/TypeScript. Once an
+                  interview is scheduled, I’ll generate a tailored script.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <button class="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] text-slate-700 hover:bg-slate-100 transition">
+                    Prepare talking points
+                  </button>
+                  <button class="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] text-slate-700 hover:bg-slate-100 transition">
+                    Draft personal pitch
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Agent: Technical Interview -->
+            <div class="bg-white border border-emerald-100 rounded-2xl shadow-sm overflow-hidden">
+              <div class="h-1.5 bg-gradient-to-r from-emerald-500 via-emerald-400 to-blue-400"></div>
+              <div class="p-4 space-y-2.5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="flex items-center gap-2">
+                    <div class="h-7 w-7 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center">
+                      <span class="text-[11px] font-semibold text-emerald-700">TI</span>
+                    </div>
+                    <div>
+                      <p class="text-xs font-semibold text-slate-900">
+                        Technical Interview Agent
+                      </p>
+                      <p class="text-[11px] text-emerald-700">
+                        Preparation ready · 45–60 min
+                      </p>
+                    </div>
+                  </div>
+                  <span class="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700 border border-emerald-100">
+                    Active
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  I’ve built a focused prep plan around React architecture, microfrontends,
+                  API-first design and your DevOps mindset. Let’s rehearse how you
+                  explain ownership and collaboration in cross-functional teams.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <button class="inline-flex items-center gap-1 rounded-full bg-slate-900 px-2.5 py-1 text-[11px] font-medium text-slate-50 hover:bg-slate-800 transition">
+                    Open prep plan
+                  </button>
+                  <button class="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] text-slate-700 hover:bg-slate-100 transition">
+                    Run mock interview
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Agent: Company Research -->
+            <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-4 space-y-2.5">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <div class="h-7 w-7 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center">
+                    <span class="text-[11px] font-semibold text-slate-700">CR</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-slate-900">
+                      Company Research Agent
+                    </p>
+                    <p class="text-[11px] text-slate-500">
+                      Updated from site &amp; public info
+                    </p>
+                  </div>
+                </div>
+                <span class="inline-flex items-center rounded-full bg-slate-50 px-2 py-0.5 text-[10px] font-medium text-slate-600 border border-slate-200">
+                  Ready
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                epilot values freedom &amp; responsibility, API-first services,
+                dev-owned operations, and fast releases. Expect questions around
+                ownership, collaboration and shipping impact, not only code trivia.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <button class="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] text-slate-700 hover:bg-slate-100 transition">
+                  Why epilot? answer
+                </button>
+                <button class="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] text-slate-700 hover:bg-slate-100 transition">
+                  Culture fit notes
+                </button>
+              </div>
+            </div>
+
+            <!-- Agent: Follow-up -->
+            <div class="bg-white border border-amber-100 rounded-2xl shadow-sm p-4 space-y-2.5">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <div class="h-7 w-7 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center">
+                    <span class="text-[11px] font-semibold text-amber-700">FU</span>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-slate-900">
+                      Follow-Up Agent
+                    </p>
+                    <p class="text-[11px] text-amber-700">
+                      3 days of silence detected
+                    </p>
+                  </div>
+                </div>
+                <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-medium text-amber-700 border border-amber-100">
+                  Suggesting
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                It’s a good moment to send a light, confident follow-up. I’ll keep it
+                polite, short, and aligned with your product engineer profile.
+              </p>
+              <button class="inline-flex items-center gap-1 rounded-full bg-amber-500 px-2.5 py-1.5 text-[11px] font-medium text-white hover:bg-amber-600 transition">
+                Generate follow-up email
+              </button>
+            </div>
+
+            <!-- Reflection & metrics -->
+            <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-4 space-y-4">
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="text-xs font-semibold text-slate-900">
+                  Interview readiness & focus
+                </h3>
+                <span class="inline-flex items-center rounded-full bg-slate-50 px-2 py-0.5 text-[10px] font-medium text-slate-600 border border-slate-200">
+                  v0.1 · simulated
+                </span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div class="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5">
+                  <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400">Readiness</p>
+                  <p class="mt-1 text-lg font-semibold text-slate-900">74%</p>
+                  <p class="mt-0.5 text-[11px] text-slate-500">
+                    Strong on React, needs sharper narrative on DevOps &amp; ownership.
+                  </p>
+                </div>
+                <div class="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5">
+                  <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400">Next focus</p>
+                  <ul class="mt-1.5 space-y-0.5 text-[11px] text-slate-600">
+                    <li>• One story about API-first design</li>
+                    <li>• One story about “you build it, you run it”</li>
+                    <li>• One story about e2e ownership in a squad</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <p class="text-[11px] font-medium text-slate-700">
+                  After your next interview, I’ll ask:
+                </p>
+                <p class="text-[11px] text-slate-500 italic">
+                  “What went well, what felt weak, what surprised you?” – your answers
+                  will train this dashboard to give better guidance for the next loop.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
