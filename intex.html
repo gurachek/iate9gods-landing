@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I ATE 9 GODS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #d4af37;
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .main-title {
+            font-size: clamp(3rem, 12vw, 9rem);
+            font-weight: bold;
+            letter-spacing: 0.05em;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .number-nine {
+            display: inline-block;
+            color: #d4af37;
+            animation: pulse 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .number-nine::after {
+            content: '9';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #8b0000;
+            opacity: 0;
+            animation: glitch 5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.4);
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { 
+                opacity: 0;
+                transform: translate(0, 0);
+            }
+            92% { 
+                opacity: 0.7;
+                transform: translate(-3px, 2px);
+            }
+            94% { 
+                opacity: 0.7;
+                transform: translate(2px, -2px);
+            }
+            96% { 
+                opacity: 0.7;
+                transform: translate(-2px, 1px);
+            }
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #8b7355;
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d4af37;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            animation: float 2s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 10px); }
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .philosophy-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .philosophy-text {
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #c9b037;
+            text-align: justify;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .philosophy-text:nth-child(2) { animation-delay: 0.2s; }
+        .philosophy-text:nth-child(3) { animation-delay: 0.4s; }
+        .philosophy-text:nth-child(4) { animation-delay: 0.6s; }
+        .philosophy-text:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .highlight {
+            color: #d4af37;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .blood-red {
+            color: #8b0000;
+            font-style: italic;
+        }
+
+        /* The Limit Section */
+        .limit-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .limit-visual {
+            font-size: clamp(8rem, 20vw, 20rem);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .nine-limit {
+            color: #8b7355;
+            display: block;
+            margin-bottom: 2rem;
+            opacity: 0.7;
+        }
+
+        .ten-transcend {
+            color: #d4af37;
+            display: block;
+            animation: emerge 2s ease-out infinite;
+            text-shadow: 0 0 50px rgba(212, 175, 55, 0.6);
+        }
+
+        @keyframes emerge {
+            0%, 100% { 
+                opacity: 0.6;
+                transform: scale(0.95);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .limit-text {
+            font-size: clamp(1.3rem, 2.5vw, 2.2rem);
+            color: #c9b037;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Final Section */
+        .final {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .final-statement {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: bold;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            max-width: 1000px;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .eternal-fire {
+            color: #ff4500;
+            animation: flicker 1.5s ease-in-out infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { 
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+            }
+            50% { 
+                opacity: 0.8;
+                text-shadow: 0 0 40px rgba(255, 69, 0, 1), 0 0 60px rgba(255, 69, 0, 0.6);
+            }
+        }
+
+        .manifesto {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: #8b0000;
+            text-align: center;
+            margin-top: 3rem;
+            font-style: italic;
+            max-width: 700px;
+            line-height: 1.6;
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+        }
+
+        .signature {
+            margin-top: 4rem;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            color: #8b7355;
+            text-align: center;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        /* Particles effect */
+        .particle {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: #d4af37;
+            pointer-events: none;
+            opacity: 0;
+            animation: particleFloat 10s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) translateX(0);
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) translateX(100px);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .philosophy-text {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="main-title">I ATE <span class="number-nine">9</span> GODS</h1>
+            <p class="tagline">The hunger that refuses to die</p>
+            <div class="scroll-indicator" onclick="document.querySelector('.philosophy').scrollIntoView({behavior: 'smooth'})">
+                ↓ SCROLL ↓
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="philosophy">
+            <div class="philosophy-content">
+                <p class="philosophy-text">
+                    I ate already <span class="highlight">9 gods</span>, seems so powerful, like I had everything in life and have everything I may need, everything people 100 years ago would dream of.
+                </p>
+                <p class="philosophy-text">
+                    I should be happy stopping on 9. But between 9 and 10 is a <span class="highlight">huge real gap</span>.
+                </p>
+                <p class="philosophy-text">
+                    It's the step when just something numeric becomes a number, <span class="highlight">10</span> — 10 is not an integer by its own, it's combined from 1 and 0 and <span class="highlight">9 was the last numeric, the limit</span>.
+                </p>
+                <p class="philosophy-text">
+                    I already have everything. But that feeling inside, this stretching and something... that not let me calm down, this <span class="eternal-fire">eternal fire</span>... forces me to look for the last piece of puzzle.
+                </p>
+                <p class="philosophy-text">
+                    The hunger forces me to find my <span class="blood-red">10th god</span> and finally eat it.
+                </p>
+            </div>
+        </section>
+
+        <!-- The Limit Section -->
+        <section class="limit-section">
+            <div class="limit-visual">
+                <span class="nine-limit">9</span>
+                <span class="ten-transcend">10</span>
+            </div>
+            <p class="limit-text">
+                <span class="highlight">9</span> is the last digit, the final integer.
+            </p>
+            <p class="limit-text">
+                <span class="highlight">10</span> is beyond the limit — transcendence in numeric form.
+            </p>
+        </section>
+
+        <!-- Final Section -->
+        <section class="final">
+            <h2 class="final-statement">
+                Never stop.<br>
+                Never calm down.<br>
+                Always <span class="eternal-fire">hungry</span>.
+            </h2>
+            <p class="manifesto">
+                The promise that I'll stop there,<br>
+                just one more step left.
+            </p>
+            <div class="signature">
+                iate9gods
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                document.body.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Smooth scroll reveal for philosophy section
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.philosophy-text').forEach(text => {
+            text.style.animationPlayState = 'paused';
+            observer.observe(text);
+        });
+    </script>
+</body>
+</html>
